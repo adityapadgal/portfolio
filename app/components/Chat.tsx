@@ -56,17 +56,16 @@ export default function ChatPage() {
 
   return (
     <>
-      {/* Background Blur Overlay (Only visible when chat is expanded) */}
       {isExpanded && (
         <motion.div
-          className="fixed inset-0 bg-black/10 backdrop-blur-md transition-opacity"
+          className="fixed inset-0 bg-black/10 backdrop-blur-md transition-opacity z-1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         />
       )}
 
-      <Flex direction="column" align="center" className="w-full max-w-md mx-auto relative">
+      <Flex direction="column" align="center" className="w-10/12 max-w-md mx-auto relative">
         <motion.div
           ref={chatRef}
           className="w-full relative z-10"
@@ -74,40 +73,48 @@ export default function ChatPage() {
           transition={{ type: "spring", stiffness: 100, damping: 15 }}
         >
           {isExpanded && (
-            <Box className="space-y-4 h-64 overflow-y-auto bg-gray-200 p-4 rounded-lg shadow-inner mt-3">
-              {/* Default AI Greeting */}
-              <Flex align="start" gap="3">
-                <Avatar fallback="Ai" className="w-9 h-9 bg-black text-white" />
-                <Box className="bg-gray-100 dark:bg-gray-300 p-3 rounded-lg max-w-xs text-start">
-                  <p className="text-sm dark:text-black">Hello! How can I help you today?</p>
-                </Box>
-              </Flex>
+            <Box className="relative bg-white rounded-lg shadow-inner mt-3 h-98">
+              {/* Fixed Header */}
+              <Box className="bg-blue-500 text-white w-full h-10 p-2 shadow-md absolute rounded-tr-lg rounded-tl-lg top-0 left-0 right-0 z-10 flex items-center justify-center">
+                ChatMe
+              </Box>
 
-              {/* Chat Messages */}
-              {messages.map((msg, i) => (
-                <Box key={i} className="space-y-2">
-                  {/* User Message */}
-                  <Flex align="end" justify="end" gap="3">
-                    <Box className="bg-blue-500 text-white p-3 rounded-lg max-w-xs text-start">{msg.query}</Box>
-                    <Avatar fallback="U" className="w-9 h-9 bg-blue-500 text-white" />
-                  </Flex>
+              {/* Scrollable Chat Content */}
+              <Box className="overflow-y-auto h-full pt-14 p-4 space-y-4">
+                {/* Default AI Greeting */}
+                <Flex align="start" gap="3">
+                  <Avatar fallback="Ai" className="w-9 h-9 bg-black text-white" />
+                  <Box className="bg-gray-100 dark:bg-gray-300 p-3 rounded-lg max-w-xs text-start">
+                    <p className="text-sm dark:text-black">Hello! How can I help you today?</p>
+                  </Box>
+                </Flex>
 
-                  {/* AI Response */}
-                  <Flex align="start" gap="3">
-                    <Avatar fallback="Ai" className="w-9 h-9 bg-black text-white" />
-                    <Box className="bg-gray-100 dark:bg-gray-300 p-3 rounded-lg max-w-xs text-start">
-                      <p className="text-sm text-gray-800 dark:text-black">{msg.answer}</p>
-                    </Box>
-                  </Flex>
-                </Box>
-              ))}
+                {/* Chat Messages */}
+                {messages.map((msg, i) => (
+                  <Box key={i} className="space-y-2">
+                    {/* User Message */}
+                    <Flex align="end" justify="end" gap="3">
+                      <Box className="bg-blue-500 text-white p-3 rounded-lg max-w-xs text-start">{msg.query}</Box>
+                      <Avatar fallback="U" className="w-9 h-9 bg-blue-500 text-white" />
+                    </Flex>
 
-              {/* Loading Progress Bar */}
-              {loading && (
-                <Box maxWidth="width-full" className="mx-auto mt-3">
-                  <Progress />
-                </Box>
-              )}
+                    {/* AI Response */}
+                    <Flex align="start" gap="3">
+                      <Avatar fallback="Ai" className="w-9 h-9 bg-black text-white" />
+                      <Box className="bg-gray-100 dark:bg-gray-300 p-3 rounded-lg max-w-xs text-start">
+                        <p className="text-sm text-gray-800 dark:text-black">{msg.answer}</p>
+                      </Box>
+                    </Flex>
+                  </Box>
+                ))}
+
+                {/* Loading Progress Bar */}
+                {loading && (
+                  <Box maxWidth="width-full" className="mx-auto mt-3">
+                    <Progress />
+                  </Box>
+                )}
+              </Box>
             </Box>
           )}
 

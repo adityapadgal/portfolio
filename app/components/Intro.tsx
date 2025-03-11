@@ -1,5 +1,5 @@
 'use client'
-import { Heading, Flex } from '@radix-ui/themes';
+import { Heading, Flex, HoverCard, Text, Box, Link, Avatar } from '@radix-ui/themes';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
@@ -51,10 +51,42 @@ const Intro = () => {
         {text}
         <span className="animate-blink">|</span>
       </motion.div>
-      <br></br>
-      <p className="mt-4 text-lg sm:text-xl md:text-2xl text-gray-500 max-w-xs sm:max-w-md md:max-w-xl leading-snug">
-        "Innovating with Code, Engineering Scalable Solutions, and Crafting Intelligent Experiences." 🚀
+      <p className="mt-4 text-lg sm:text-xl md:text-md text-gray-300 max-w-xs sm:max-w-md md:max-w-xl leading-snug">
+        "Innovating with Code, Engineering Scalable Solutions, and Crafting Intelligent Experiences."
       </p>
+      <br></br>
+      <Text className='text-gray-400'>
+        Curious about me? My AI bot {" "}
+        <HoverCard.Root>
+          <HoverCard.Trigger>
+            <Link href="#" target="">
+              @chatme
+            </Link>
+          </HoverCard.Trigger>
+          <HoverCard.Content maxWidth="300px">
+            <Flex gap="4">
+              <Avatar
+                size="3"
+                fallback="Ai"
+                radius="full"
+              />
+              <Box>
+                <Heading size="3" as="h3">
+                  Chatbot
+                </Heading>
+                <Text as="div" size="2" color="gray" mb="2">
+                  @chatme
+                </Text>
+                <Text as="div" size="2">
+                Built a smart little AI bot, @chatme, because why not let AI do the talking? Used Pinecone to keep its memory sharp, Next.js to make it look good, and LLMs to make it sound smart (or at least pretend to). Now, instead of me explaining my portfolio, my bot does the job - 24/7, no coffee breaks needed.
+                </Text>
+              </Box>
+            </Flex>
+          </HoverCard.Content>
+        </HoverCard.Root>{" "}
+        , has the answers! 🤖
+      </Text>
+
     </Flex>
   );
 };

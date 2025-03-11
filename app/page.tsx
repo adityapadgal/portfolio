@@ -8,14 +8,13 @@ export default function Home() {
     <div className="relative">
       <div className="sticky top-0 h-screen flex flex-col justify-center">
         <Flex className="w-full flex-col md:flex-row items-center">
-          <Box className="flex flex-col w-full md:w-1/2 md:px-28">
+          <Box className="flex flex-col w-full md:w-1/2">
             <Container size="3">
                 <Intro />
-                <br />
                 <ChatPage />
             </Container>
           </Box>
-          <Box className="flex flex-col z-0 w-full md:w-1/2 px-6 h-full justify-center items-center">
+          <Box className="flex flex-col z-0 w-full md:w-1/2 h-full justify-center items-center">
             <Container size="3">
               <ImageBox />
             </Container>
