@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Progress, Box, Avatar, Flex, Button } from "@radix-ui/themes";
+import { Progress, Box, Avatar, Flex } from "@radix-ui/themes";
 
 export default function ChatPage() {
   const [query, setQuery] = useState("");
@@ -67,20 +67,20 @@ export default function ChatPage() {
 
       <Flex direction="column" align="center" className="w-10/12 max-w-md mx-auto relative">
         <motion.div
-          ref={chatRef}
-          className="w-full relative z-10"
-          animate={{ height: isExpanded ? "400px" : "auto" }}
-          transition={{ type: "spring", stiffness: 100, damping: 15 }}
-        >
+            ref={chatRef}
+            className={`w-full relative z-10 ${
+              isExpanded ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" : ""
+            }`}
+          >
           {isExpanded && (
             <Box className="relative bg-white rounded-lg shadow-inner mt-3 h-98">
               {/* Fixed Header */}
-              <Box className="bg-blue-500 text-white w-full h-10 p-2 shadow-md absolute rounded-tr-lg rounded-tl-lg top-0 left-0 right-0 z-10 flex items-center justify-center">
-                ChatMe
+              <Box className="bg-blue-500 text-white w-full h-12 p-3 shadow-md absolute rounded-tr-lg rounded-tl-lg top-0 left-0 right-0 z-10 flex items-center justify-center">
+              ChatMe
               </Box>
 
               {/* Scrollable Chat Content */}
-              <Box className="overflow-y-auto h-full pt-14 p-4 space-y-4">
+              <Box className="overflow-y-auto h-full pt-16 p-4 space-y-4">
                 {/* Default AI Greeting */}
                 <Flex align="start" gap="3">
                   <Avatar fallback="Ai" className="w-9 h-9 bg-black text-white" />
